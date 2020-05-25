@@ -1,3 +1,5 @@
+package test;
+
 import businessLogic.Appointment;
 import businessLogic.Doctor;
 import businessLogic.Patient;
@@ -26,6 +28,7 @@ public class ClassImplTest {
 
     }
 
+    /*
     @Test
     public final void testDoctorClassImpl() {
         Doctor doctor = new Doctor("Bascou", "Julien", "Généraliste",
@@ -51,7 +54,7 @@ public class ClassImplTest {
         Assert.assertEquals("20/09/2020", appointment.getDate());
         Assert.assertEquals("17-17h30", appointment.getTime());
 
-    }
+    }*/
 
 
 }

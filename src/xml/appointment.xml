@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appointments>
+    <appointment id="1">
+        <doctor>1</doctor>
+        <patient>1</patient>
+        <date>2020-01-01</date>
+        <time>9:30</time>
+    </appointment>
+</appointments>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<docteurs>
+    <docteur id="1">
+        <lastName>Bascou</lastName>
+        <firstName>Julien</firstName>
+        <speciality>generaliste</speciality>
+        <adress>1 rue du paradis</adress>
+    </docteur>
+    <docteur id="2">
+        <lastName>Joubz</lastName>
+        <firstName>Nathan</firstName>
+        <speciality>generaliste</speciality>
+        <adress>2 rue du paradis</adress>
+    </docteur>
+</docteurs>

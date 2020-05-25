@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<patients>
+    <patient id="1">
+        <firstName>a</firstName>
+        <lastName>a</lastName>
+        <phone>a</phone>
+        <email>a</email>
+        <dateOfBirth>a</dateOfBirth>
+        <gender>a</gender>
+        <weight>a</weight>
+        <height>a</height>
+    </patient>
+</patients>

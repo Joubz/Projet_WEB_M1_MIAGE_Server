@@ -1,3 +1,5 @@
+package test;
+
 import businessLogic.Utility;
 import org.junit.Assert;
 import org.junit.Test;

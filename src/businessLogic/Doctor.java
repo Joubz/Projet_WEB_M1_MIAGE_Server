@@ -1,17 +1,30 @@
 package businessLogic;
 
 /**
+ * 1/ Doctor (Get)
+ * 2/ Schedule (Get by Doctor) retourne au mois
+ */
+
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
  * This class represents a doctor and all his information
  */
+@XmlRootElement
 public class Doctor {
 
     // Attributes
 
     private String lastName;
     private String firstName;
-    private String speciality; // Principe d'amélioration : Créer un enum avec une liste de spécialité
+    private String speciality;
     private String address;
-
+    private int morningStartHour;
+    private int morningEndHour;
+    private int afternoonStartHour;
+    private int afternoonEndHour;
+    private int appointmentLast;
 
     // Constructor
 
@@ -30,13 +43,19 @@ public class Doctor {
      * @param speciality main.Doctor speciality
      * @param address    main.Doctor address
      */
-    public Doctor(String lastName, String firstName, String speciality, String address) {
+    public Doctor(String lastName, String firstName, String speciality, String address, int morningStartHour, int morningEndHour, int afternoonStartHour, int afternoonEndHour, int appointmentLast) {
         try {
             if (Utility.nameValidated(firstName, lastName)) {
                 this.lastName = lastName;
                 this.firstName = firstName;
                 this.speciality = speciality;
                 this.address = address;
+                this.morningStartHour = morningStartHour;
+                this.morningEndHour = morningEndHour;
+                this.afternoonStartHour = afternoonStartHour;
+                this.afternoonEndHour = afternoonEndHour;
+                this.appointmentLast = appointmentLast;
+
             } else
                 throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
@@ -79,5 +98,25 @@ public class Doctor {
      */
     public String getAddress() {
         return this.address;
+    }
+
+    public int getMorningStartHour() {
+        return morningStartHour;
+    }
+
+    public int getMorningEndHour() {
+        return morningEndHour;
+    }
+
+    public int getAfternoonStartHour() {
+        return afternoonStartHour;
+    }
+
+    public int getAfternoonEndHour() {
+        return afternoonEndHour;
+    }
+
+    public int getAppointmentLast() {
+        return appointmentLast;
     }
 }
