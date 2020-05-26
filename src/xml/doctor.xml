@@ -1,15 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<docteurs>
-    <docteur id="1">
-        <lastName>Bascou</lastName>
+<?xml version="1.0" encoding="utf-8"?>
+<doctors>
+    <doctor id="1">
+        <lastName>xxx</lastName>
         <firstName>Julien</firstName>
         <speciality>generaliste</speciality>
-        <adress>1 rue du paradis</adress>
-    </docteur>
-    <docteur id="2">
-        <lastName>Joubz</lastName>
+        <address>1 rue du paradis</address>
+        <morningStartHour>8</morningStartHour>
+        <morningEndHour>12</morningEndHour>
+        <afternoonStartHour>14</afternoonStartHour>
+        <afternoonEndHour>17</afternoonEndHour>
+        <appointmentLast>30</appointmentLast>
+    </doctor>
+    <doctor id="2">
+        <lastName>xxx</lastName>
         <firstName>Nathan</firstName>
         <speciality>generaliste</speciality>
-        <adress>2 rue du paradis</adress>
-    </docteur>
-</docteurs>
+        <address>2 rue du paradis</address>
+        <morningStartHour>8</morningStartHour>
+        <morningEndHour>12</morningEndHour>
+        <afternoonStartHour>14</afternoonStartHour>
+        <afternoonEndHour>17</afternoonEndHour>
+        <appointmentLast>30</appointmentLast>
+    </doctor>
+</doctors>

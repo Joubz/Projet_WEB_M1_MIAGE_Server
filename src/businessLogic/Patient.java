@@ -1,20 +1,34 @@
 package businessLogic;
 
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+
 /**
  * This class represents a patient and all his information
  */
+@Root(name = "patient")
 public class Patient {
 
     // Attributes
 
-    // TODO: Mettre en place un système d'id avec les xml
+    @Attribute(name = "id")
+    private int id;
+    @Element(name = "firstName")
     private String firstName;
+    @Element(name = "lastName")
     private String lastName;
+    @Element(name = "phone")
     private String phone;
+    @Element(name = "email")
     private String email;
+    @Element(name = "dateOfBirth")
     private String dateOfBirth;
+    @Element(name = "gender")
     private char gender;
+    @Element(name = "weight")
     private int weight;
+    @Element(name = "height")
     private int height;
 
 
@@ -129,4 +143,21 @@ public class Patient {
         return this.height;
     }
 
+    /**
+     * Get patient id
+     *
+     * @return patient id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Set patient id
+     *
+     * @param id patient id (int)
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 }

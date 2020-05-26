@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <patients>
     <patient id="1">
-        <firstName>a</firstName>
-        <lastName>a</lastName>
-        <phone>a</phone>
-        <email>a</email>
-        <dateOfBirth>a</dateOfBirth>
-        <gender>a</gender>
-        <weight>a</weight>
-        <height>a</height>
+        <firstName>Julien</firstName>
+        <lastName>bascou</lastName>
+        <phone>0611026088</phone>
+        <email>bascou@gmail.com</email>
+        <dateOfBirth>20/09/1998</dateOfBirth>
+        <gender>H</gender>
+        <weight>68</weight>
+        <height>174</height>
+    </patient>
+    <patient id="2">
+        <firstName>Julien</firstName>
+        <lastName>bascou</lastName>
+        <phone>0611026088</phone>
+        <email>bascou@gmail.com</email>
+        <dateOfBirth>20/09/1998</dateOfBirth>
+        <gender>H</gender>
+        <weight>68</weight>
+        <height>174</height>
     </patient>
 </patients>
