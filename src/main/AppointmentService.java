@@ -1,6 +1,7 @@
 package main;
 
 import businessLogic.MyAppointment;
+import businessLogic.MyDoctor;
 import xml.MyAppointments;
 import xml.MyDoctors;
 import xml.MyPatients;
