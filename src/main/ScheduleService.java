@@ -72,7 +72,6 @@ public class ScheduleService {
 
             for (MyAppointment appointment : appointmentsManager.getAppointments()) {
                 if (appointment.getDoctor().getId().equals(doctorId)) {
-                    String[] splited = appointment.getDate().split("-");
                     if (Integer.parseInt(appointment.getDate().substring(5, 7)) == Integer.parseInt(month)) {
                         if (Integer.parseInt(appointment.getDate().substring(0, 4)) == Integer.parseInt(year)) {
                             list.add(appointment);
