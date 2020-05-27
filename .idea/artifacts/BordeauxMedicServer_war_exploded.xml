@@ -56,6 +56,12 @@
           <element id="library" level="project" name="Maven: com.jcabi:jcabi-xml:0.22.2" />
           <element id="library" level="project" name="Maven: org.cactoos:cactoos:0.20" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.21" />
+          <element id="library" level="project" name="Maven: com.sun.jersey:jersey-core:1.19.4" />
+          <element id="library" level="project" name="Maven: com.sun.jersey:jersey-json:1.19.4" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.2" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-jaxrs:1.9.2" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.2" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-xc:1.9.2" />
         </element>
       </element>
     </root>

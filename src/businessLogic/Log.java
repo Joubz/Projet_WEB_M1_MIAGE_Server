@@ -2,7 +2,6 @@ package businessLogic;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 
 /**
  * main.Log class, put exception or string message in txt log file.

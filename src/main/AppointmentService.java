@@ -1,122 +1,84 @@
 package main;
 
-import businessLogic.*;
-import com.jcabi.xml.XML;
-import com.jcabi.xml.XMLDocument;
-import org.simpleframework.xml.Serializer;
-import org.simpleframework.xml.core.Persister;
+import businessLogic.MyAppointment;
+import xml.MyAppointments;
+import xml.MyPatients;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.File;
 
-@Path("/appointments")
+@Path("/Appointments")
 public class AppointmentService {
 
+    private MyAppointments myAppointments = new MyAppointments();
+    private MyPatients myPatients;
+
+    public AppointmentService() {
+        myAppointments.decode();
+    }
+
     @GET
-    @Produces("application/json")
-    public Response getAppointments() throws Exception {
-        try {
-            XML xml = new XMLDocument(new File("C:\\Users\\Julien\\IdeaProjects\\BordeauxMedicServer\\src\\xml\\appointment.xml"));
-            String xmlString = xml.toString();
-            xmlString = xmlString.trim().replaceFirst("^([\\W]+)<", "<");
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAppointments() {
+        System.out.println(myAppointments.getAppointments());
 
-            Serializer serializer = new Persister();
-            Appointments appointments =  serializer.read(Appointments.class, xmlString);
-
-            xml = new XMLDocument(new File("C:\\Users\\Julien\\IdeaProjects\\BordeauxMedicServer\\src\\xml\\doctor.xml"));
-            xmlString = xml.toString();
-            xmlString = xmlString.trim().replaceFirst("^([\\W]+)<", "<");
-
-            serializer = new Persister();
-            Doctors doctors =  serializer.read(Doctors.class, xmlString);
-
-            xml = new XMLDocument(new File("C:\\Users\\Julien\\IdeaProjects\\BordeauxMedicServer\\src\\xml\\patient.xml"));
-            xmlString = xml.toString();
-            xmlString = xmlString.trim().replaceFirst("^([\\W]+)<", "<");
-
-            serializer = new Persister();
-            Patients patients =  serializer.read(Patients.class, xmlString);
-
-            for (Appointment appointment : appointments.getAppointments()) {
-                for (Doctor doctor : doctors.getDoctors()) {
-                    if(doctor.getId() == appointment.getId())
-                        appointment.setDoctor(doctor);
-                }
-                for (Patient patient : patients.getPatients()) {
-                    if (patient.getId() == appointment.getId())
-                        appointment.setPatient(patient);
-                }
-            }
-
-            return Response.ok().entity(appointments)
-                    .header("Access-Control-Allow-Origin", "*")
-                    .header("Access-Control-Allow-Credentials", "true")
-                    .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
-                    .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD")
-                    .build();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
-
+        return Response.ok().entity(myAppointments.getAppointments())
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .build();
     }
 
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public Response getAppointment(@PathParam("id") int id) throws Exception {
-        try {
-            XML xml = new XMLDocument(new File("C:\\Users\\Julien\\IdeaProjects\\BordeauxMedicServer\\src\\xml\\appointment.xml"));
-            String xmlString = xml.toString();
-            xmlString = xmlString.trim().replaceFirst("^([\\W]+)<", "<");
-
-            Serializer serializer = new Persister();
-            Appointments appointments =  serializer.read(Appointments.class, xmlString);
-
-            xml = new XMLDocument(new File("C:\\Users\\Julien\\IdeaProjects\\BordeauxMedicServer\\src\\xml\\doctor.xml"));
-            xmlString = xml.toString();
-            xmlString = xmlString.trim().replaceFirst("^([\\W]+)<", "<");
-
-            serializer = new Persister();
-            Doctors doctors =  serializer.read(Doctors.class, xmlString);
-
-            xml = new XMLDocument(new File("C:\\Users\\Julien\\IdeaProjects\\BordeauxMedicServer\\src\\xml\\patient.xml"));
-            xmlString = xml.toString();
-            xmlString = xmlString.trim().replaceFirst("^([\\W]+)<", "<");
-
-            serializer = new Persister();
-            Patients patients =  serializer.read(Patients.class, xmlString);
-
-            for (Appointment appointment : appointments.getAppointments()) {
-                if (appointment.getId() == id) {
-                    for (Doctor doctor : doctors.getDoctors()) {
-                        if(doctor.getId() == appointment.getId())
-                            appointment.setDoctor(doctor);
-                    }
-                    for (Patient patient : patients.getPatients()) {
-                        if (patient.getId() == appointment.getId())
-                            appointment.setPatient(patient);
-                    }
-                    return Response.ok().entity(appointment)
-                            .header("Access-Control-Allow-Origin", "*")
-                            .header("Access-Control-Allow-Credentials", "true")
-                            .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
-                            .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD")
-                            .build();
-                }
+    public Response getAppointment(@PathParam("id") String id) throws Exception {
+        System.out.println(id);
+        for (MyAppointment appointment: this.myAppointments.getAppointments()) {
+            if (appointment.getId().equals(id)) {
+                return Response.ok().entity(appointment)
+                        .header("Access-Control-Allow-Origin", "*")
+                        .header("Access-Control-Allow-Credentials", "true")
+                        .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
+                        .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                        .build();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
-        return null;
+        return Response.status(Response.Status.NOT_FOUND)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .build();
+    }
 
+
+    @POST
+    @Consumes("application/json")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response postAppointment(final MyAppointment myAppointment) {
+        System.out.println(myAppointment);
+
+        // Enregistrement du patient
+        this.myPatients = new MyPatients();
+        myPatients.decode();
+        myPatients.add(myAppointment.getPatient());
+        myPatients.encode();
+
+        // Enregistrement du rendez-vous
+        myAppointments.decode();
+        myAppointments.add(myAppointment);
+        myAppointments.encode();
+
+        return Response.ok().entity(myAppointment)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .build();
     }
 
 }
