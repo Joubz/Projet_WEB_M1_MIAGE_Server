@@ -57,6 +57,42 @@ public class MyDoctor {
         this.id = id;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public int getMorningStartHour() {
+        return morningStartHour;
+    }
+
+    public int getMorningEndHour() {
+        return morningEndHour;
+    }
+
+    public int getAfternoonStartHour() {
+        return afternoonStartHour;
+    }
+
+    public int getAfternoonEndHour() {
+        return afternoonEndHour;
+    }
+
+    public int getAppointmentLast() {
+        return appointmentLast;
+    }
+
     @Override
     public String toString() {
         return "MyDoctor{" +

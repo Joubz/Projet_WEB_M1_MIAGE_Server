@@ -1,10 +1,8 @@
 package businessLogic;
 
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import xml.MyDoctorAdapter;
-import xml.MyDoctorDeserializer;
-import xml.MyPatientAdapter;
-import xml.MyPatientDeserializer;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import xml.*;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -22,11 +20,13 @@ public class MyAppointment {
     @XmlAttribute
     @XmlJavaTypeAdapter(MyDoctorAdapter.class)
     @JsonDeserialize(using = MyDoctorDeserializer.class)
+    @JsonSerialize(using = MyDoctorSerializer.class)
     private MyDoctor doctor;
 
     @XmlAttribute
     @XmlJavaTypeAdapter(MyPatientAdapter.class)
     @JsonDeserialize(using = MyPatientDeserializer.class)
+    @JsonSerialize(using = MyPatientSerializer.class)
     private MyPatient patient;
 
     private String date;
