@@ -11,8 +11,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-;
 
+/**
+ * MyPatients class
+ */
 @XmlRootElement(name = "patients")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MyPatients {
@@ -26,10 +28,20 @@ public class MyPatients {
     @XmlElement(name = "patient", type = MyPatient.class)
     private List<MyPatient> patients = new ArrayList<>();
 
+    /**
+     * Get patients
+     *
+     * @return patients
+     */
     public List<MyPatient> getPatients() {
         return patients;
     }
 
+    /**
+     * Put patients information to string
+     *
+     * @return patient information string
+     */
     @Override
     public String toString() {
         return "MyPatients{" +
@@ -37,11 +49,19 @@ public class MyPatients {
                 '}';
     }
 
+    /**
+     * Add a patient to patient list
+     *
+     * @param patient patient that we want to add on a list
+     */
     public void add(MyPatient patient) {
         MyPatients.assignId(patient);
         this.patients.add(patient);
     }
 
+    /**
+     * Encore patient list to an xml file
+     */
     public void encode() {
         this.attrNextId = MyPatients.nextID;
 
@@ -60,12 +80,14 @@ public class MyPatients {
 
             //Writes XML file to file-system
             jaxbMarshaller.marshal(this, file);
-        }
-        catch (JAXBException e) {
+        } catch (JAXBException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Decode patient xml file to create patient list
+     */
     public void decode() {
         File xmlFile = new File(FILE_NAME);
 
@@ -85,9 +107,7 @@ public class MyPatients {
                 this.attrNextId = object.attrNextId;
                 MyPatients.nextID = object.attrNextId;
 
-            }
-            catch (JAXBException e)
-            {
+            } catch (JAXBException e) {
                 e.printStackTrace();
             }
         }
@@ -95,6 +115,11 @@ public class MyPatients {
 
     }
 
+    /**
+     * Assign an id for new patient
+     *
+     * @param patient (MyPatient)
+     */
     public static void assignId(MyPatient patient) {
         MyPatients manager = new MyPatients();
         manager.decode();

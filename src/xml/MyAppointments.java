@@ -11,9 +11,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Appointments xml class
+ */
 @XmlRootElement(name = "appointments")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MyAppointments {
+
+    // Attributes
+
     public static final String FILE_NAME = "appointments.xml";
 
     public static int nextID = 0;
@@ -24,10 +30,22 @@ public class MyAppointments {
     @XmlElement(name = "appointment", type = MyAppointment.class)
     private List<MyAppointment> appointments = new ArrayList<>();
 
+    // Methods
+
+    /**
+     * Get appointments
+     *
+     * @return appointments
+     */
     public List<MyAppointment> getAppointments() {
         return appointments;
     }
 
+    /**
+     * Put appointments information to string
+     *
+     * @return appointments information string
+     */
     @Override
     public String toString() {
         return "MyAppointments{" +
@@ -36,11 +54,19 @@ public class MyAppointments {
                 '}';
     }
 
+    /**
+     * Add an appointment to appointment list
+     *
+     * @param appointment appointment that we want to add on a list
+     */
     public void add(MyAppointment appointment) {
         MyAppointments.assignId(appointment);
         this.appointments.add(appointment);
     }
 
+    /**
+     * Encode appointment list to an xml file
+     */
     public void encode() {
         this.attrNextId = MyAppointments.nextID;
 
@@ -61,12 +87,14 @@ public class MyAppointments {
 
             //Writes XML file to file-system
             jaxbMarshaller.marshal(this, file);
-        }
-        catch (JAXBException e) {
+        } catch (JAXBException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Decode appointment xml file to create appointment list
+     */
     public void decode() {
         File xmlFile = new File(FILE_NAME);
 
@@ -88,14 +116,17 @@ public class MyAppointments {
                 this.attrNextId = object.attrNextId;
                 MyAppointments.nextID = object.attrNextId;
 
-            }
-            catch (JAXBException e)
-            {
+            } catch (JAXBException e) {
                 e.printStackTrace();
             }
         }
     }
 
+    /**
+     * Assign an id for new appointment
+     *
+     * @param appointment (MyAppointment)
+     */
     public static void assignId(MyAppointment appointment) {
         MyAppointments manager = new MyAppointments();
         manager.decode();

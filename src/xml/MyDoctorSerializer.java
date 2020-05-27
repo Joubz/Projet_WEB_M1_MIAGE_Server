@@ -9,6 +9,15 @@ import org.codehaus.jackson.map.SerializerProvider;
 import java.io.IOException;
 
 public class MyDoctorSerializer extends JsonSerializer<MyDoctor> {
+
+    /**
+     * Serialize a doctor json
+     * @param doctor (MyDoctor)
+     * @param jsonGenerator (JsonGenerator)
+     * @param serializerProvider (SerializerProvider)
+     * @throws IOException - IOException
+     * @throws JsonProcessingException - JsonProcessingException
+     */
     @Override
     public void serialize(MyDoctor doctor, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
         jsonGenerator.writeStartObject();
