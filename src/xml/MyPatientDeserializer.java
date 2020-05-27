@@ -10,6 +10,17 @@ import org.codehaus.jackson.map.JsonDeserializer;
 import java.io.IOException;
 
 public class MyPatientDeserializer extends JsonDeserializer<MyPatient> {
+
+
+    /**
+     * deserialize a patient json
+     *
+     * @param jsonParser (JsonParser)
+     * @param deserializationContext (DeserializationContext)
+     * @return patient
+     * @throws IOException - IOException
+     * @throws JsonProcessingException - JsonProcessingException
+     */
     @Override
     public MyPatient deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
         // NE PAS UTILISER LE PARAMETRE jsonParser DIRECTEMENT !!

@@ -13,8 +13,13 @@ import javax.ws.rs.core.Response;
 @Path("/Doctors")
 public class DoctorService {
 
+    // Attributes
+
     MyDoctors myDoctors = new MyDoctors();
 
+    /**
+     * Default Constructor
+     */
     public DoctorService() {
         this.myDoctors.decode();
 
@@ -27,9 +32,13 @@ public class DoctorService {
         }
     }
 
+    /**
+     * URL : http://localhost:8080/BordeauxMedicServer_war_exploded/Doctors | Get all doctors information
+     * @return All doctors information
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getDoctors() throws Exception {
+    public Response getDoctors() {
         return Response.ok().entity(this.myDoctors.getDoctors())
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Credentials", "true")

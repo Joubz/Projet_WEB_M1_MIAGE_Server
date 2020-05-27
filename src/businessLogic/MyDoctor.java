@@ -11,8 +11,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * MyDoctor Class
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MyDoctor {
+
+    // Attributes
 
     @XmlID
     @XmlAttribute
@@ -29,11 +34,29 @@ public class MyDoctor {
     private int afternoonEndHour;
     private int appointmentLast;
 
+    // Constructors
+
+    /**
+     * Default constructor
+     */
     public MyDoctor() {
         this.id = String.valueOf(MyDoctors.nextID);
         MyDoctors.nextID++;
     }
 
+    /**
+     * Constructor with parameters
+     *
+     * @param lastName           doctor last name
+     * @param firstName          doctor first name
+     * @param speciality         doctor speciality
+     * @param address            doctor address
+     * @param morningStartHour   doctor morning start hour
+     * @param morningEndHour     doctor morning end hour
+     * @param afternoonStartHour doctor afternoon start hour
+     * @param afternoonEndHour   doctor afternoon end hour
+     * @param appointmentLast    doctor appointment time (generally 30 minutes)
+     */
     public MyDoctor(String lastName, String firstName, String speciality, String address, int morningStartHour, int morningEndHour, int afternoonStartHour, int afternoonEndHour, int appointmentLast) {
         this.id = String.valueOf(MyDoctors.nextID);
         MyDoctors.nextID++;
@@ -49,50 +72,110 @@ public class MyDoctor {
         this.appointmentLast = appointmentLast;
     }
 
+    /**
+     * Get doctor id
+     *
+     * @return doctor id
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Set doctor id
+     *
+     * @param id (int)
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * Get doctor last name
+     *
+     * @return doctor last name
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     * Get doctor first name
+     *
+     * @return doctor first name
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * Get doctor speciality
+     *
+     * @return doctor speciality
+     */
     public String getSpeciality() {
         return speciality;
     }
 
+    /**
+     * Get doctor address
+     *
+     * @return doctor address
+     */
     public String getAddress() {
         return address;
     }
 
+    /**
+     * Get doctor morning start hour
+     *
+     * @return doctor morning start hour
+     */
     public int getMorningStartHour() {
         return morningStartHour;
     }
 
+    /**
+     * Get doctor morning end hour
+     *
+     * @return doctor morning end hour
+     */
     public int getMorningEndHour() {
         return morningEndHour;
     }
 
+    /**
+     * Get doctor afternoon start hour
+     *
+     * @return doctor afternoon start hour
+     */
     public int getAfternoonStartHour() {
         return afternoonStartHour;
     }
 
+    /**
+     * Get doctor afternoon end hour
+     *
+     * @return doctor afternoon end hour
+     */
     public int getAfternoonEndHour() {
         return afternoonEndHour;
     }
 
+    /**
+     * Get doctor appointment last
+     *
+     * @return doctor appointment last
+     */
     public int getAppointmentLast() {
         return appointmentLast;
     }
 
+    /**
+     * transform doctor information to string
+     *
+     * @return information for doctor
+     */
     @Override
     public String toString() {
         return "MyDoctor{" +
@@ -109,6 +192,13 @@ public class MyDoctor {
                 '}';
     }
 
+    /**
+     * Get work schedule for a doctor month of work
+     *
+     * @param year  (int)
+     * @param month (int)
+     * @return all schedules for a doctor month of work
+     */
     public ArrayList<String> getWorkSchedules(int year, int month) {
         int nbHours = (this.morningEndHour - this.morningStartHour) + (this.afternoonEndHour - this.afternoonStartHour);
         int nbAppointment = (nbHours * 60) / this.appointmentLast;

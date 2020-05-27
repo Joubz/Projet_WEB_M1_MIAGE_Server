@@ -13,10 +13,20 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
+/**
+ * Schedule service class
+ */
 @Path("/Schedules")
 public class ScheduleService {
 
+    /**
+     * URL : http://localhost:8080/BordeauxMedicServer_war_exploded/Schedules/{doctorId}/{month}/ Get available schedule for a doctor
+     *
+     * @param doctorId (String)
+     * @param month    (String)
+     * @param year     (String)
+     * @return all available schedule for one doctor
+     */
     @GET
     @Path("/{doctorId}/{month}/{year}")
     @Produces("application/json")
@@ -41,8 +51,8 @@ public class ScheduleService {
                 return Response.status(Response.Status.NOT_FOUND)
                         .header("Access-Control-Allow-Origin", "*")
                         .header("Access-Control-Allow-Credentials", "true")
-                        .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
-                        .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                         .build();
             }
 
@@ -50,8 +60,8 @@ public class ScheduleService {
                 return Response.status(Response.Status.BAD_REQUEST)
                         .header("Access-Control-Allow-Origin", "*")
                         .header("Access-Control-Allow-Credentials", "true")
-                        .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
-                        .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                         .build();
             }
 
@@ -60,7 +70,7 @@ public class ScheduleService {
 
             ArrayList<MyAppointment> list = new ArrayList<>();
 
-            for (MyAppointment appointment: appointmentsManager.getAppointments()) {
+            for (MyAppointment appointment : appointmentsManager.getAppointments()) {
                 if (appointment.getDoctor().getId().equals(doctorId)) {
                     String[] splited = appointment.getDate().split("-");
                     if (Integer.parseInt(appointment.getDate().substring(5, 7)) == Integer.parseInt(month)) {
@@ -74,8 +84,8 @@ public class ScheduleService {
             ArrayList<String> freeSchedules = doctor.getWorkSchedules(Integer.parseInt(year), Integer.parseInt(month));
             ArrayList<String> scheduleToDelete = new ArrayList<>();
 
-            for (String free: freeSchedules) {
-                for (MyAppointment appointment: list) {
+            for (String free : freeSchedules) {
+                for (MyAppointment appointment : list) {
                     if (free.equals(appointment.getDate() + 'T' + appointment.getTime())) {
                         scheduleToDelete.add(free);
                     }
@@ -88,17 +98,16 @@ public class ScheduleService {
             return Response.ok().entity(freeSchedules)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Credentials", "true")
-                    .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
-                    .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                    .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                     .build();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return Response.status(Response.Status.NOT_FOUND)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Credentials", "true")
-                    .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
-                    .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                    .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                     .build();
         }
 

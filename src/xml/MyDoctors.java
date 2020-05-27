@@ -11,10 +11,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * MyDoctors class
+ */
 @XmlRootElement(name = "doctors")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MyDoctors {
+    // Attributes
+
     public static final String FILE_NAME = "doctors.xml";
 
     public static int nextID = 0;
@@ -25,10 +29,22 @@ public class MyDoctors {
     @XmlElement(name = "doctor", type = MyDoctor.class)
     private List<MyDoctor> doctors = new ArrayList<>();
 
+    // Methods
+
+    /**
+     * Get all doctors information
+     *
+     * @return all doctors information
+     */
     public List<MyDoctor> getDoctors() {
         return doctors;
     }
 
+    /**
+     * Put doctors information to string
+     *
+     * @return doctors information string
+     */
     @Override
     public String toString() {
         return "MyDoctors{" +
@@ -37,10 +53,18 @@ public class MyDoctors {
                 '}';
     }
 
+    /**
+     * Add a doctor to doctor list
+     *
+     * @param doctor doctor to add
+     */
     public void add(MyDoctor doctor) {
         this.doctors.add(doctor);
     }
 
+    /**
+     * Encode doctor list to an xml file
+     */
     public void encode() {
         this.attrNextId = MyDoctors.nextID;
 
@@ -59,12 +83,14 @@ public class MyDoctors {
 
             //Writes XML file to file-system
             jaxbMarshaller.marshal(this, file);
-        }
-        catch (JAXBException e) {
+        } catch (JAXBException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Decode doctor xml file to create doctor list
+     */
     public void decode() {
         File xmlFile = new File(FILE_NAME);
 
@@ -84,9 +110,7 @@ public class MyDoctors {
                 this.attrNextId = object.attrNextId;
                 MyDoctors.nextID = object.attrNextId;
 
-            }
-            catch (JAXBException e)
-            {
+            } catch (JAXBException e) {
                 e.printStackTrace();
             }
         }
