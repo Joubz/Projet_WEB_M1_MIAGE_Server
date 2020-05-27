@@ -102,8 +102,8 @@ public class AppointmentService {
                 return Response.status(Response.Status.NOT_FOUND)
                         .header("Access-Control-Allow-Origin", "*")
                         .header("Access-Control-Allow-Credentials", "true")
-                        .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
-                        .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                         .build();
             }
 
@@ -111,8 +111,8 @@ public class AppointmentService {
                 return Response.status(Response.Status.BAD_REQUEST)
                         .header("Access-Control-Allow-Origin", "*")
                         .header("Access-Control-Allow-Credentials", "true")
-                        .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
-                        .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                         .build();
             }
 
@@ -121,7 +121,7 @@ public class AppointmentService {
 
             ArrayList<MyAppointment> list = new ArrayList<>();
 
-            for (MyAppointment appointment: appointmentsManager.getAppointments()) {
+            for (MyAppointment appointment : appointmentsManager.getAppointments()) {
                 if (appointment.getDoctor().getId().equals(doctorId)) {
                     String[] splited = appointment.getDate().split("-");
                     if (Integer.parseInt(appointment.getDate().substring(5, 7)) == Integer.parseInt(month)) {
@@ -135,17 +135,16 @@ public class AppointmentService {
             return Response.ok().entity(list)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Credentials", "true")
-                    .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
-                    .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                    .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                     .build();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return Response.status(Response.Status.NOT_FOUND)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Credentials", "true")
-                    .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
-                    .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                    .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                     .build();
         }
     }
@@ -199,13 +198,16 @@ public class AppointmentService {
                 .build();
     }
 
-
+    /**
+     * @param appointmentId appointment id
+     * @return a confirmation of delete appointment
+     */
     @DELETE
     @Path("/{appointmentId}")
     @Consumes("application/json")
     @Produces(MediaType.TEXT_PLAIN)
     public Response deleteAppointment(@PathParam("appointmentId") String appointmentId) {
-        for (MyAppointment appointment: this.myAppointments.getAppointments()) {
+        for (MyAppointment appointment : this.myAppointments.getAppointments()) {
             if (appointment.getId().equals(appointmentId)) {
                 this.myAppointments.getAppointments().remove(appointment);
 
@@ -214,8 +216,8 @@ public class AppointmentService {
                 return Response.ok()
                         .header("Access-Control-Allow-Origin", "*")
                         .header("Access-Control-Allow-Credentials", "true")
-                        .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
-                        .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                         .build();
             }
         }
@@ -223,8 +225,8 @@ public class AppointmentService {
         return Response.status(Response.Status.NOT_FOUND)
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Credentials", "true")
-                .header("Access-Control-Allow-Headers","Content-Type, Accept, X-Requested-With")
-                .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                 .build();
     }
 
